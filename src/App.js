@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Header from "./components/header";
+import Search from "./components/search";
+import Table from "./components/table";
+import employees from "./employees.json"
+import './app.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  state = {
+    search: "",
+    results: "",
+    employees
+  };
+
+
+handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
 }
+
+
+//render app
+render() { 
+  return ( 
+    <div>
+      <Header />
+      <p>{this.state.search}</p>
+      <Search search={this.state.search}
+      handleInputChange = {this.handleInputChange}/>
+      <div className="container">
+        <div className="row">
+          <table className="table">
+            <thread>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thread>
+            <tbody>
+              {this.state.employees.map(employee => (
+                <tr>
+                  <Table 
+                  id={employee.id}
+                  img={employee.image}
+                  name={employee.name}
+                  phone={employee.phone}
+                  email={employee.email}
+                  />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+)
+  }
+}
+
 
 export default App;
