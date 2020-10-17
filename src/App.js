@@ -1,65 +1,46 @@
 import React, { Component } from 'react';
-import Header from "./components/header";
-import Search from "./components/search";
-import Table from "./components/table";
-import employees from "./employees"
+import EmployeeList from "./EmployeeList";
+import SearchBox from "./SearchBox";
 import './app.css';
 
 
 class App extends Component {
-  state = {
-    search: "",
-    results: "",
-    employees,
-    searchEmployee: ''
-  };
+ constructor(props) {
+   super(props);
+   this.state = {
+     employees: [
+       {name: "Luffy", position: "Captian"},
+       {name: "Roronoa Zoro", position: "Swordsman"},
+       {name: "Nami", position: "Navigator"},
+       {name: "Sanji", position: "Chef"},
+       {name: "Usopp", position: "Lookout"}
+     ],
+     searchEmployees: ''
+   }
+ }
+
+ handleInput = (e) => {
+//  console.log(e.target.value);
+ this.setState({searchEmployees: e.target.value})
+ }
 
 
-handleInputChange = (e) => {
-console.log(e.target.value);
-this.state({searchEmployee: e.target.value})
-}
+ render () {
+  let filteredEmployees = this.state.employees.filter((employee) => {
+    return employee.position.toLowerCase().includes(this.state.searchEmployees.toLowerCase())
+  })
+
+   return (
+     <div className="App">
+       <h1>Employees</h1>
+       <p>Search Employees by position</p>
+       <SearchBox handleInput={this.handleInput}/>
+       <EmployeeList filteredEmployees={filteredEmployees}/>
+     </div>
+   )
+ }
 
 
-
-//render app
-render() { 
-  return ( 
-    <div>
-      <Header />
-      <p>{this.state.search}</p>
-      <Search search={this.state.search}
-      handleInputChange = {this.handleInputChange}/>
-      <div className="container">
-        <div className="row">
-          <table className="table">
-            <thread>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
-              </tr>
-            </thread>
-            <tbody>
-              {this.state.employees.map(employee => (
-                <tr>
-                  <Table 
-                  id={employee.id}
-                  img={employee.image}
-                  name={employee.name}
-                  phone={employee.phone}
-                  email={employee.email}
-                  />
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>  
-)
-  }
 }
 
 
