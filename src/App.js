@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import EmployeeList from "./EmployeeList";
 import SearchBox from "./SearchBox";
-import "../src/styles/App.css"
+import "../src/App.css";
+
 
 
 class App extends Component {
