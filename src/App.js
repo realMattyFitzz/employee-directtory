@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from "./components/header";
 import Search from "./components/search";
 import Table from "./components/table";
-import employees from "./employees.json"
+import employees from "./employees"
 import './app.css';
 
 
@@ -10,16 +10,16 @@ class App extends Component {
   state = {
     search: "",
     results: "",
-    employees
+    employees,
+    searchEmployee: ''
   };
 
 
-handleInputChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+handleInputChange = (e) => {
+console.log(e.target.value);
+this.state({searchEmployee: e.target.value})
 }
+
 
 
 //render app
@@ -57,7 +57,7 @@ render() {
           </table>
         </div>
       </div>
-    </div>
+    </div>  
 )
   }
 }

@@ -4,13 +4,7 @@ import "../styles/search.css";
 function search(props) {
     return(
         <form>
-            <input 
-            className="seachBar"
-            value = {props.search}
-            onCharge = {props.handleInputChange}
-            name = "search"
-            type = "text">
-            </input>
+            <input onCharge = {props.handleInputChange} type="text"></input>
         </form>
     )
 }

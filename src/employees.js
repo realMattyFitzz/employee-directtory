@@ -1,4 +1,4 @@
-[
+const employees = [ 
     {
         "id": 1,
         "image": "https://picsum.photos/id/237/200/300",
@@ -43,4 +43,6 @@
     }
 
 ]
+
+export default employees
   
