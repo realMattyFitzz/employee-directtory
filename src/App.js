@@ -3,7 +3,7 @@ import Header from "./components/header";
 import Search from "./components/search";
 import Table from "./components/table";
 import employees from "./employees.json"
-import './app.css';
+import './src/app.css';
 
 
 class App extends Component {
